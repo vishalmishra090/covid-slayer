@@ -1,3 +1,1 @@
 /* /index.html 200
-/users https://covidslayer-api.herokuapp.com/users 200
-/users/* https://covidslayer-api.herokuapp.com/users/:splat 200
