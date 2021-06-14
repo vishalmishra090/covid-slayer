@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
 
-const uri = "mongodb://localhost:27017/covid-slayer-db"
+const uri = process.env.MONGO_DB_URI || "mongodb://localhost:27017/covid-slayer-db"
 
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true);
