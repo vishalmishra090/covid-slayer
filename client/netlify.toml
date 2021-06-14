@@ -1,2 +1,4 @@
-/users/* https://covidslayer-api.herokuapp.com
-/games   https://covidslayer-api.herokuapp.com
+[[redirects]]
+  from = "/users"
+  to = "https://covidslayer-api.herokuapp.com"
+  
