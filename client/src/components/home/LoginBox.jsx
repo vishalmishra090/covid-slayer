@@ -46,7 +46,7 @@ function LoginBox() {
     if(loader){
       (async function() {    
         setWarn(false);
-          let res = await fetch("/users/login",{
+          let res = await fetch(process.env.REACT_APP_API_URI+"/users/login",{
             method: 'POST',
             headers: {
              'Content-Type': 'application/json'

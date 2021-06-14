@@ -53,7 +53,7 @@ function ForgotPassword() {
     let timerId = null;
     (async () => {
       if (submitForm) {
-        let res = await fetch("/users/forgot", {
+        let res = await fetch(process.env.REACT_APP_API_URI+"/users/forgot", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

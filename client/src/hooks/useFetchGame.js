@@ -13,7 +13,7 @@ const useFetchGame = () => {
           (async () => {
             if (authe.login) {
                 if (!game && user) {
-                  let res = await fetch("/games", {
+                  let res = await fetch(process.env.REACT_APP_API_URI+"/games", {
                     headers: {
                       Authorization: authe.getAuthe(),
                     },

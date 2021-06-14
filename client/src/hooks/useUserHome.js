@@ -24,7 +24,7 @@ let useUserHome = () => {
     if(logoutLoader){
 
       (async () => {
-        let res = await fetch("/users/logout",{
+        let res = await fetch(process.env.REACT_APP_API_URI+"/users/logout",{
           method: "POST",
           headers: {
             'Authorization': authe.getAuthe()

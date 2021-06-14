@@ -93,7 +93,7 @@ function Game() {
     
     if(gameState.win){
     (async () => {
-        let res = await fetch("/games",{
+        let res = await fetch(process.env.REACT_APP_API_URI+"/games",{
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
