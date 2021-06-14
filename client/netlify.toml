@@ -1,13 +1,13 @@
 
 [[redirects]]
-  from = "/users"
-  to = "https://covidslayer-api.herokuapp.com"
+  from = "/users/*"
+  to = "https://covidslayer-api.herokuapp.com/:splat"
   status = 200
   force = true
 
 [[redirects]]
   from = "/games"
-  to = "https://covidslayer-api.herokuapp.com"
+  to = "https://covidslayer-api.herokuapp.com/:splat"
   status = 200
   force = true
   
