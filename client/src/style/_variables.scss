@@ -1,0 +1,29 @@
+@mixin theme {
+    :root{
+        --font-header: "Frijole", cursive;
+        --font-primary: "Corben", cursive;
+        --font-secondary: Arial, Helvetica, sans-serif;
+        --color1: #ce49d3;
+        --color1-hover:#f600ff;
+    }
+    .dark{   // default
+       --color1-shade1:  #67256a; 
+       --color1-shade2:  #3e163f;
+       --color1-shade3:  #150715;
+       --color2: black;
+       --color3: white;
+       --color4: gray;
+       --gradient1: linear-gradient(to bottom, var(--color2) 50%, var(--color1));
+    }
+
+    .light{
+       --color1-shade1:  #e292e5; 
+       --color1-shade2:  #f0c8f2;
+       --color1-shade3:  #faedfb;
+       --color2: white;
+       --color3: black;
+       --color4: gray;
+       --gradient1: linear-gradient(to bottom, var(--color2) 50%, var(--color1));
+    }
+}
+
