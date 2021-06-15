@@ -22,7 +22,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use((req,res,next) => {
-    console.log(req.headers)
+    console.log(req.headers.origin)
     next()
 })
 app.use(userRouter);
