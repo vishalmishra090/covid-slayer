@@ -80,6 +80,7 @@ function SignupBox() {
       (async function () {
         let res = await fetch(process.env.REACT_APP_API_URI+"/users", {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

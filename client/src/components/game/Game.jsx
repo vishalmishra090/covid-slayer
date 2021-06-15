@@ -95,6 +95,7 @@ function Game() {
     (async () => {
         let res = await fetch(process.env.REACT_APP_API_URI+"/games",{
           method: "POST",
+          credentials: "include",
           headers: {
             'Content-Type': 'application/json',
             'Authorization': authe.getAuthe()

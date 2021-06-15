@@ -55,6 +55,7 @@ function ForgotPassword() {
       if (submitForm) {
         let res = await fetch(process.env.REACT_APP_API_URI+"/users/forgot", {
           method: "POST",
+          credentials: "include",
           headers: {
             "Content-Type": "application/json",
           },

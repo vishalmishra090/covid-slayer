@@ -42,12 +42,13 @@ function LoginBox() {
   useEffect(() => {
     const controller = new AbortController();
     const { signal } = controller;
-    let cancel = false;
+    let cancel = false
     if(loader){
       (async function() {    
         setWarn(false);
           let res = await fetch(process.env.REACT_APP_API_URI+"/users/login",{
             method: 'POST',
+            credentials: "include",
             headers: {
              'Content-Type': 'application/json'
             },
@@ -58,26 +59,28 @@ function LoginBox() {
             }),
             signal
          })
-  
+          
          if(!cancel){
+
           if(res.status === 200){
             let result = await res.json();
             setUser(result.user)
             authe.setAuthe(result.jsToken)
-            history.go(-1)
+            history.push()
    
           }
           if(res.status === 400){
            setLoader(false);
            setWarn(true)
           }
+
          }
       })();
-    }
 
-    return () => {
-      controller.abort();
-      cancel = true
+      return () => {
+        controller.abort()
+        cancel = true
+      }
     }
   },[loader])
 

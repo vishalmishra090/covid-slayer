@@ -5,7 +5,7 @@ import GameHistory from "./GameHistory";
 import useUserHome from "../../hooks/useUserHome";
 import Loader from "../Loader"
 import ellipsisString from "../../utils/ellipsisString";
-import NotFound from "../NotFound"
+
 
 
 function UserHome() {

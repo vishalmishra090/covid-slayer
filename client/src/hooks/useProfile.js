@@ -96,6 +96,7 @@ let useProfile = () => {
 
     let res = await fetch(process.env.REACT_APP_API_URI+'/users', {
       method: 'PATCH',
+      credentials: "include",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': authe.getAuthe()
@@ -146,6 +147,7 @@ let useProfile = () => {
 
         let res = await fetch(process.env.REACT_APP_API_URI+"users/logout-all",{
           method: "POST",
+          credentials: "include",
           headers: {
             'Authorization': authe.getAuthe()
           }
@@ -170,6 +172,7 @@ let useProfile = () => {
       ( async () => {
         let res = await fetch(process.env.REACT_APP_API_URI+"/users",{
           method: 'DELETE',
+          credentials: "include",
           headers: {
            'Authorization': authe.getAuthe()
           }
