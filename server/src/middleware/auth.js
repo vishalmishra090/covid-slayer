@@ -55,7 +55,7 @@ async function auth(req, res, next) {
           res.cookie("httpOnlyToken", token.httpOnlyToken, {
             httpOnly: true,
             secure: process.env.CLIENT_URI ? true : false,
-            sameSite: "None",
+            sameSite: process.env.CLIENT_URI ? "None" : "",
             ...cookieExpire(),
           });
     }
@@ -68,7 +68,7 @@ async function auth(req, res, next) {
  
     res.status(401)
     .clearCookie("httpOnlyToken",{httpOnly: true,secure: process.env.CLIENT_URI ? true : false,
-      sameSite: "None",})
+      sameSite: process.env.CLIENT_URI ? "None" : "",})
     .send()
     // console.log(e);
   }

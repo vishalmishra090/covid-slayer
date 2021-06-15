@@ -25,6 +25,7 @@ let useUserHome = () => {
 
       (async () => {
         let res = await fetch(process.env.REACT_APP_API_URI+"/users/logout",{
+          credentials:"include",
           method: "POST",
           headers: {
             'Authorization': authe.getAuthe()

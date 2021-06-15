@@ -161,8 +161,8 @@ function Game() {
             commentaryList={gameState.actionList}
           />
 
-          {gameState.win && (
-            <PopUp className="result-pop-up" ref={popUpRef}>
+          
+            <PopUp className="result-pop-up" ref={popUpRef} show={gameState.win}>
               <h3 className="pop-up-text">
                 {gameState.winner 
                 ? `${ellipsisString(gameState.winner,0,13)} Win` 
@@ -177,7 +177,7 @@ function Game() {
                 Play Again
               </Button>
             </PopUp>
-          )}
+         
         </div>
 
       </main>

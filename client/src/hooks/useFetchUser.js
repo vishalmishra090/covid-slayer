@@ -5,13 +5,12 @@ import {useHistory, useParams} from "react-router-dom"
 
 let useFetchUser = (byParams = false) => {
      let authe = useAuthe()
-     let h = useUser()
+     let {user, setUser}= useUser()
      let history = useHistory()
      let {username} = useParams()
-     let {user, setUser} = h
+     
      useEffect(() => {
         if(authe.login){
-            console.log(h)
          if(!user){
             (async () => {
                 let un = byParams ? username : localStorage.getItem('username')

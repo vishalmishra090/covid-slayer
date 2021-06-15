@@ -13,7 +13,7 @@ const port = process.env.PORT || 8008;
 const app = express();
 
 var corsOptions = {
-    origin: process.env.CLIENT_URI || 'http://localhost:3000',
+    origin: process.env.CLIENT_URI || 'http://localhost:8888',
     credentials: true
 }
 
@@ -21,8 +21,14 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors(corsOptions));
 app.use(cookieParser());
+app.use((req,res,next) => {
+    console.log(req.path)
+    next()
+ })
 app.use(userRouter);
 app.use(gameRouter);
+
+
 
 
 app.get('*',(req,res) =>{
