@@ -183,7 +183,7 @@ router.post("/users/forgot", resetPassword.generateResetToken, async (req, res) 
   try{
     const user = req.user
       
-      // await sendResetMail(req.resetToken, user.email, req.headers['x-forwarded-host'])
+      await sendResetMail(req.resetToken, user.email, req.headers.origin)
       
       user.reset.emailSendCount += 1 
       await user.save()
