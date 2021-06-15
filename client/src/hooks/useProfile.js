@@ -94,7 +94,7 @@ let useProfile = () => {
     
     setSave(true);
 
-    let res = await fetch(process.env.REACT_APP_API_URI+'/users', {
+    let res = await fetch('/users', {
       method: 'PATCH',
       credentials: "include",
       headers: {
@@ -145,7 +145,7 @@ let useProfile = () => {
     if(logoutAll){
       (async () => {
 
-        let res = await fetch(process.env.REACT_APP_API_URI+"users/logout-all",{
+        let res = await fetch("/users/logout-all",{
           method: "POST",
           credentials: "include",
           headers: {
@@ -170,7 +170,7 @@ let useProfile = () => {
 
     if(popup && deleteAccount){
       ( async () => {
-        let res = await fetch(process.env.REACT_APP_API_URI+"/users",{
+        let res = await fetch("/users",{
           method: 'DELETE',
           credentials: "include",
           headers: {

@@ -37,7 +37,7 @@ const useResetPassword = () => {
     let cancel = false;
     (async () => {
       if (fetchMethod === "GET") {
-        let res = await fetch(process.env.REACT_APP_API_URI+`/users/reset/${resetToken}`, { 
+        let res = await fetch(`/users/reset/${resetToken}`, { 
           credentials: "include",
           signal 
         });
@@ -69,7 +69,7 @@ const useResetPassword = () => {
       }
 
       if(fetchMethod === "POST") {
-        let res = await fetch(process.env.REACT_APP_API_URI+`/users/reset/${resetToken}`, { 
+        let res = await fetch(`/users/reset/${resetToken}`, { 
             method: "POST",
             credentials: "include",
             headers: {

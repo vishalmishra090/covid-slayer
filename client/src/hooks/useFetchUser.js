@@ -15,7 +15,7 @@ let useFetchUser = (byParams = false) => {
             (async () => {
                 let un = byParams ? username : localStorage.getItem('username')
                 
-                let res = await fetch(process.env.REACT_APP_API_URI+`/users/${un}`,{
+                let res = await fetch(`/users/${un}`,{
                     credentials:"include",
                     headers:{
                         'Authorization': authe.getAuthe()
