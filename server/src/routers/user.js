@@ -4,6 +4,7 @@ const User = require("../models/user");
 const auth = require("../middleware/auth");
 const resetPassword = require("../middleware/resetPassword")
 const sendResetMail = require("../email/sendResetMail")
+require('dotenv').config()
 
 const jwt = require('jsonwebtoken');
 
@@ -26,6 +27,8 @@ router.post("/users", async (req, res) => {
 
     res.cookie("httpOnlyToken", token.httpOnlyToken, {
       httpOnly: true,
+      secure: process.env.CLIENT_URI ? true : false,
+      sameSite: "None",
       ...cookieExpire(),
     });
     res.status(201).send({
@@ -33,7 +36,6 @@ router.post("/users", async (req, res) => {
       jsToken: token.jsToken,
     });
   } catch (e) {
-    res.cookie("httpOnlyToken",null);
     res.status(400).send(e);
   }
 });
@@ -63,6 +65,8 @@ router.post("/users/login", async (req, res) => {
     
     res.cookie("httpOnlyToken", token.httpOnlyToken, {
       httpOnly: true,
+      secure: process.env.CLIENT_URI ? true : false,
+      sameSite: "None",
       ...cookieExpire(),
     });
     res.status(200).send({
@@ -70,7 +74,7 @@ router.post("/users/login", async (req, res) => {
       jsToken: token.jsToken,
     });
   } catch (e) {
-    res.cookie("httpOnlyToken",null);
+    
     res.status(400).send(e);
     // console.log(e)
   }
@@ -86,6 +90,8 @@ router.post("/users/logout", auth, async (req, res) => {
 
         res.cookie("httpOnlyToken", null, {
             httpOnly: true,
+            secure: process.env.CLIENT_URI ? true : false,
+            sameSite: "None",
           });
         res.status(200).send()
     }catch(e){
@@ -106,6 +112,8 @@ router.post("/users/logout-all", auth, async (req, res) => {
         await user.save();
         res.cookie("httpOnlyToken", null, {
             httpOnly: true,
+            secure: process.env.CLIENT_URI ? true : false,
+            sameSite: "None",
           });
         res.status(200).send()
     }catch(e){
@@ -158,7 +166,9 @@ router.delete("/users", auth, async (req, res) => {
         await User.findByIdAndDelete({_id: user._id})
         res.status(200)
         .clearCookie("httpOnlyToken",{
-          httpOnly: true
+          httpOnly: true,
+          secure: process.env.CLIENT_URI ? true : false,
+          sameSite: "None",
         })
         .send({
           message: `Account '${user.email}' deleted successfully`
@@ -179,7 +189,8 @@ router.post("/users/forgot", resetPassword.generateResetToken, async (req, res) 
       await user.save()
 
       res.status(200)   
-      .clearCookie("httpOnlyToken",{httpOnly: true})
+      .clearCookie("httpOnlyToken",{httpOnly: true,secure: process.env.CLIENT_URI ? true : false,
+        sameSite: "None",})
       .send({
         message: `A Password reset Link is send to ${user.email}`,
         email: user.email,
@@ -227,7 +238,8 @@ router.post("/users/reset/:resetToken", resetPassword.verifyResetToken, async (r
        }
        await user.save()
        res.status(205)
-       .clearCookie("httpOnlyToken",{httpOnly: true})
+       .clearCookie("httpOnlyToken",{httpOnly: true,secure: process.env.CLIENT_URI ? true : false,
+        sameSite: "None",})
        .send({
          message: `Password change successfully for ${user.email}`
        })

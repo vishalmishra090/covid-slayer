@@ -95,7 +95,7 @@ const resetPassword = {
         })
       }
       
-      console.log(e)
+      // console.log(e)
       res.status(500).send()
 
     }
