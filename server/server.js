@@ -24,7 +24,7 @@ app.use(cookieParser());
 app.use((req,res,next) => {
     console.log(req.path)
     next()
- })
+})
 app.use(userRouter);
 app.use(gameRouter);
 

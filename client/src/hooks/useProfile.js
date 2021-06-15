@@ -4,6 +4,7 @@ import signupReducer from "../reducer/signupReducer";
 import {useAuthe}  from "../hooks/authe"
 import {useHistory} from "react-router-dom"
 
+
 let useProfile = () => {
   let authe = useAuthe()
   let history = useHistory()
@@ -155,6 +156,7 @@ let useProfile = () => {
   
         if(res.status === 200){
           authe.removeAuthe()
+
           history.push("/")
         }
         if(res.status === 500 && !cancel){
@@ -197,6 +199,7 @@ let useProfile = () => {
        cancel = true
     }
  }, [user, logoutAll,deleteAccount])
+
   return {
     edit,
     save,

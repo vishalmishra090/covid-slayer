@@ -1,2 +1,4 @@
+/users/* https://covidslayer-api.herokuapp.com/users/:splat  200
+/games   https://covidslayer-api.herokuapp.com/games 200
 /* /index.html 200
-/users/*  https://covidslayer-api.herokuapp.com  200
+

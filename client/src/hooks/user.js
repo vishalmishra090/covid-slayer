@@ -1,10 +1,18 @@
-import { useContext, useState } from "react";
+import { useContext, useState,useEffect } from "react";
 import UserContext from "../contexts/UserContext";
+import { useAuthe } from "./authe";
 
 
 const useUserProvider = () => {
 
   let [user, setUser] = useState(null);
+  let {login} = useAuthe()
+  
+   useEffect(() => {
+    if(!login)
+      setUser(null)
+
+  },[login])
  
   user && localStorage.setItem('username', user.username)
   return {
