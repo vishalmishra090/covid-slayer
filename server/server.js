@@ -21,10 +21,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors(corsOptions));
 app.use(cookieParser());
-// app.use((req,res,next) => {
-//     console.log(req.headers.origin)
-//     next()
-// })
+app.use((req,res,next) => {
+    if(req.headers.origin !== process.env.CLIENT_URI){
+       return  res.status(401).send()
+    }
+    next()
+})
 app.use(userRouter);
 app.use(gameRouter);
 

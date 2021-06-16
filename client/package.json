@@ -40,7 +40,7 @@
     ]
   },
 
-  "proxy": "http://localhost:8008",
+  "proxy": "https://covidslayer-api.herokuapp.com",
  
   "type": "module"
 }
