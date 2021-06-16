@@ -22,6 +22,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use((req,res,next) => {
+    console.log(req.headers.origin)
+    console.log(process.env.CLIENT_URI)
     if(req.headers.origin !== process.env.CLIENT_URI){
        return  res.status(401).send()
     }
