@@ -1,5 +1,6 @@
 import React from 'react'
 import LinkBtn from '../LinkBtn'
+import {Link} from 'react-router-dom'
 
 
 function PublicHome() {
@@ -9,6 +10,7 @@ function PublicHome() {
             Play Covid Slayer Game
           </h1>
           <div className="btn-box">
+            <div className="row row1">
             <LinkBtn 
             className="primary-btn" 
             to="/login">
@@ -19,6 +21,14 @@ function PublicHome() {
             to="/signup">
               Sign Up
             </LinkBtn>
+            </div>
+            <div className="row row2">
+              Or
+            </div>
+            <div className="row row3">
+              <Link to="/game?as=guest">Play as guest</Link>
+            </div>
+            
           </div>
     </div>
     )

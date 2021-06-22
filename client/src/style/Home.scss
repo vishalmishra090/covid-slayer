@@ -40,9 +40,14 @@
 
     .btn-box {
       display: flex;
-      flex-flow: row wrap;
+      flex-flow: column nowrap;
       justify-content: center;
       align-items: center;
+
+      & > .row{
+        margin-bottom: 10px;
+        text-align: center
+      }
     }
   }
 

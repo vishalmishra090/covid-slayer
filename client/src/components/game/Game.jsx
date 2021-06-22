@@ -13,6 +13,7 @@ import useFetchUser from "../../hooks/useFetchUser"
 import Loader from "../Loader"
 import ellipsisString from "../../utils/ellipsisString";
 import {useGame} from "../../hooks/game"
+import useQuery from "../../hooks/useQuery"
 let { attack, blast, heal } = actionMethod;
 
 let initialState = {
@@ -29,12 +30,13 @@ let initialState = {
 
 function Game() {
   let [gameState, gameDispatch] = useReducer(doActionReducer, initialState);
+  let as = useQuery().get("as")
   let authe = useAuthe();
-  let {user} = useFetchUser()
+  let {user} = useFetchUser(false, as)
   let {game, setGame} = useGame()
   let popUpRef = useRef(null);
   let covidName = "Covid"
-
+  
   let doAction = (actionFun, actionName) => {
     let playerActionValue = actionFun();
     let covidActionValue = actionFun();
@@ -79,19 +81,19 @@ function Game() {
   };
 
   useEffect(() => {
-    if(user && !gameState.name.playerName){
+    if((user || as) && !gameState.name.playerName){
 
       gameDispatch({
         type: "name",
         payload:{
-          playerName: user.name,
+          playerName: user ? user.name : "Guest",
           covidName: covidName
         }
       })
 
     }
     
-    if(gameState.win){
+    if(gameState.win && as !== "guest"){
     (async () => {
         let res = await fetch("/games",{
           method: "POST",
@@ -125,20 +127,20 @@ function Game() {
     return () => {
       clearTimeout(timerId);
     };
-  }, [gameState.win, user]);
+  }, [gameState.win, user,as]);
 
   return (
     <div className="page game-page">
 
       <Header />
       {
-        !user ?
+        !user && as === null ?
         <Loader height={70} width={6} margin={4}/> :
         <main className="game-container">
 
         <div className="game">
           <HealthBox
-            playerName={user.name}
+            playerName={user ? user.name : "Guest"}
             covidName={covidName}
             playerHealth={gameState.playerHealth}
             covidHealth={gameState.covidHealth}

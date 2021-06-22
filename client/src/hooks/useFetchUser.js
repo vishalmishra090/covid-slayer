@@ -3,14 +3,16 @@ import {useUser} from "./user"
 import {useAuthe} from "./authe"
 import {useHistory, useParams} from "react-router-dom"
 
-let useFetchUser = (byParams = false) => {
+let useFetchUser = (byParams = false, as=null) => {
      let authe = useAuthe()
      let {user, setUser}= useUser()
      let history = useHistory()
      let {username} = useParams()
      
      useEffect(() => {
-        if(authe.login){
+        if(as === "guest"){
+          setUser(null)
+        }else if(authe.login){
          if(!user){
             (async () => {
                 let un = byParams ? username : localStorage.getItem('username')
@@ -37,7 +39,7 @@ let useFetchUser = (byParams = false) => {
          }else{
             history.push("/login") 
          }
-     }, [user])
+     }, [user,as])
      return{
          user,
          setUser
