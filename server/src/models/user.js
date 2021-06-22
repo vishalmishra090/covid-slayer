@@ -104,7 +104,7 @@ userSchema.methods.generateAuthToken = async function (rememberMe = false) {
   const httpOnlyToken = jwt.sign(
     { _id: user._id.toString(), rememberMe, jti },
     process.env.TOKEN_SECRET_1,
-    { expiresIn: rememberMe ? "12h" : "28d"}
+    { expiresIn: rememberMe ? "28d" : "12h"}
   );
 
   const jsToken = jwt.sign(
